@@ -14,6 +14,7 @@
 ### Association
 
 has_many :items
+has_one :purchase
 
 ## items
 
@@ -43,6 +44,7 @@ has_one :purchase
 
 ### Association
 
+belongs_to :user
 belongs_to :item
 has_one :shipping
 
@@ -57,6 +59,8 @@ has_one :shipping
 | address            | string              | null: false                    |
 | building_name      | string              |                                |
 | phone_number       | string              | null: false                    |
+| user               | references          | null: false, foreign_key :true |
+| item               | references          | null: false, foreign_key :true |
 
 ### Association
 
