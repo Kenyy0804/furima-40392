@@ -38,8 +38,8 @@ has_one :purchase
 
 | Column             | Type                | Options                        |
 |--------------------|---------------------|--------------------------------|
-| user_id            | integer             | null: false, foreign_key :true |
-| item_id            | string              | null: false                    |
+| user               | references          | null: false, foreign_key :true |
+| item               | references          | null: false, foreign_key :true |
 
 ### Association
 
