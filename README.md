@@ -26,7 +26,7 @@ has_many :items
 | item_condition_id  | integer             | null: false                    |
 | cost_id            | integer             | null: false                    |
 | region_id          | integer             | null: false                    |
-| day_id             | integer             | null: false                    |
+| shipping_day_id    | integer             | null: false                    |
 | user               | references          | null: false, foreign_key: true |
 
 ### Association
@@ -51,12 +51,12 @@ has_one :shipping
 
 | Column             | Type                | Options                        |
 |--------------------|---------------------|--------------------------------|
-| post_code          | integer             | null: false                    |
+| post_code          | string              | null: false                    |
 | region_id          | integer             | null: false                    |
 | municipalities     | string              | null: false                    |
 | address            | string              | null: false                    |
-| building_name      | string              | null: false                    |
-| phone_number       | integer             | null: false                    |
+| building_name      | string              |                                |
+| phone_number       | string              | null: false                    |
 
 ### Association
 
