@@ -66,7 +66,7 @@
                 <mxCell id="27" value="user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="6">
                     <mxGeometry y="270" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" style="edgeStyle=none;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="10" target="2">
+                <mxCell id="49" style="edgeStyle=none;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="10" target="2">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="purchases(購入)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -79,7 +79,7 @@
                     <mxGeometry y="60" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="23" value="shippings(発送先情報)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="140" y="370" width="140" height="270" as="geometry"/>
+                    <mxGeometry x="140" y="370" width="140" height="240" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="post_code" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
@@ -99,15 +99,12 @@
                 <mxCell id="33" value="phone_number" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
                     <mxGeometry y="180" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
+                <mxCell id="50" value="purchase" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
                     <mxGeometry y="210" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" value="item" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
-                    <mxGeometry y="240" width="140" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="31" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERone;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="27" target="10">
+                <mxCell id="31" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERone;endFill=0;startArrow=ERoneToMany;startFill=0;" edge="1" parent="1" target="10">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="160" y="400" as="sourcePoint"/>
+                        <mxPoint x="570" y="300" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="32" style="edgeStyle=none;html=1;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="10" target="23">
