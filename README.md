@@ -14,7 +14,7 @@
 ### Association
 
 has_many :items
-has_many :purchase
+has_many :purchases
 
 ## items
 
@@ -33,7 +33,7 @@ has_many :purchase
 ### Association
 
 belongs_to :user
-belongs_to :purchase
+has_one :purchase
 
 ## purchases
 
@@ -45,7 +45,7 @@ belongs_to :purchase
 ### Association
 
 belongs_to :user
-has_many :items
+belongs_to :item
 has_one :shipping
 
 
