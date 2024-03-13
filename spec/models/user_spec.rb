@@ -32,6 +32,24 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+    it 'passwordが半角数字のみでは登録できない' do
+      @user.password = '123456'
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it 'passwordが半角英字のみでは登録できない' do
+      @user.password = 'abcdef'
+      @user.password_confirmation = 'abcdef'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it 'passwordが全角の場合は登録できない' do
+        @user.password = 'ＡＢＣ１２３'
+        @user.password_confirmation = 'ＡＢＣ１２３'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
     it '重複したemailが存在する場合は登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
@@ -75,6 +93,32 @@ RSpec.describe User, type: :model do
       @user.first_name_kana = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana can't be blank")
+    end
+    it '漢字・平仮名・片仮名以外では登録できない' do
+      @user.family_name = '123'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name is invalid")
+    
+      @user.first_name = '456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    
+      @user.family_name_kana = 'abc'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+    
+      @user.first_name_kana = 'def'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+    end
+    it '片仮名以外だと登録できない' do
+      @user.family_name_kana = 'あいうえお'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+      
+      @user.first_name_kana = 'かきくけこ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
     end
     it 'birth_dayが空では登録できない' do
       @user.birth_day = ''
