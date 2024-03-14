@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  belongs_to :condition
+  belongs_to :item_condition
   belongs_to :cost
   belongs_to :region
   belongs_to :shipping_day
@@ -19,5 +19,5 @@ class Item < ApplicationRecord
   validates :cost_id, presence: true, numericality: { other_than: 1 }
   validates :region_id, presence: true, numericality: { other_than: 1 }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1 }
-  validates :image, attached: true
+  validates :image, presence: true
 end
