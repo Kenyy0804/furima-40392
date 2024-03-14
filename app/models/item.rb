@@ -9,9 +9,15 @@ class Item < ApplicationRecord
   belongs_to :region
   belongs_to :shipping_day
 
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :cost_id, numericality: { other_than: 1 }
-  validates :region_id, numericality: { other_than: 1 }
-  validates :shipping_day_id, numericality: { other_than: 1 }
+  validates :item_name, presence: true
+  validates :item_description, presence: true
+  validates :item_price, presence: true, numericality: {
+    greater_than_or_equal_to: 300,
+    less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
+  validates :category_id, presence: true, numericality: { other_than: 1 }
+  validates :condition_id, presence: true, numericality: { other_than: 1 }
+  validates :cost_id, presence: true, numericality: { other_than: 1 }
+  validates :region_id, presence: true, numericality: { other_than: 1 }
+  validates :shipping_day_id, presence: true, numericality: { other_than: 1 }
+  validates :image, attached: true
 end
