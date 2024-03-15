@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     greater_than_or_equal_to: 300,
     less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
   validates :category_id, presence: true, numericality: { other_than: 1 }
-  validates :condition_id, presence: true, numericality: { other_than: 1 }
+  validates :item_condition_id, presence: true, numericality: { other_than: 1 }
   validates :cost_id, presence: true, numericality: { other_than: 1 }
   validates :region_id, presence: true, numericality: { other_than: 1 }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1 }
