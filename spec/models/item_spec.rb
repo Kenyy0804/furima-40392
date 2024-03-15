@@ -67,14 +67,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Item price is not a number')
       end
 
-      it 'item_priceは、¥300~¥9,999,999の間のみ保存可能であること。' do
+      it 'item_priceは、¥300未満だと登録できない。' do
         @item.item_price = 299 # 300未満
         @item.valid?
         expect(@item.errors.full_messages).to include('Item price must be greater than or equal to 300')
+      end
 
+        it 'item_priceは、¥9,999,999以上だと登録できない。' do
         @item.item_price = 10_000_000 # 1000万以上
         @item.valid?
         expect(@item.errors.full_messages).to include('Item price must be less than or equal to 9999999')
+      end
+
+      it 'userが紐づいていないと出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
