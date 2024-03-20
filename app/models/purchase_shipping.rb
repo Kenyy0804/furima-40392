@@ -7,6 +7,7 @@ class PurchaseShipping
     validates :address
     validates :phone_number
     validates :user_id
+    validates :item_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
   end
   validates :region_id, numericality: {other_than: 0}
@@ -15,7 +16,8 @@ class PurchaseShipping
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
     Shipping.create(
       post_code: post_code, region_id: region_id, municipalities: municipalities, address: address,
-      building_name: building_name, :phone_number phone_number, purchase_id: purchase.id
-      )
+      building_name: building_name, phone_number: phone_number, purchase_id: purchase.id
+    )
+    
   end
 end

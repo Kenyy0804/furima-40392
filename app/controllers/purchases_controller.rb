@@ -3,6 +3,7 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase_shipping = PurchaseShipping.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -11,13 +12,18 @@ class PurchasesController < ApplicationController
       @purchase_shipping.save
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
   private
 
   def purchase_params
-    params.require(:purchase_shipping).permit(:post_code, :region_id, :municipalities, :address, :building_name, :phone_number).merge(purchase_id: current_purchase.id)
+    params.require(:purchase_shipping).permit(:post_code, :region_id, :municipalities, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def item_params
+    params.require(:item).permit(:item_name, :item_description, :item_price, :image, :item_condition_id, :cost_id, :region_id,
+                                 :shipping_day_id, :category_id).merge(user_id: current_user.id)
   end
 end
