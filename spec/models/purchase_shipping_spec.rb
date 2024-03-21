@@ -30,9 +30,9 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include("Post code is invalid")
       end
       it 'region_idを選択していないと保存できないこと' do
-        @purchase_shipping.region_id = '---'
+        @purchase_shipping.region_id = 0
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Region is not a number")
+        expect(@purchase_shipping.errors.full_messages).to include("Region must be other than 0")
       end
       it 'municipalitiesが空だと保存できないこと' do
         @purchase_shipping.municipalities = nil
