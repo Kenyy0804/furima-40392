@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PurchaseShipping, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    item = FactoryBot.create(:item, user_id: user.id)
+    item = FactoryBot.create(:item)
     buyer = FactoryBot.create(:user)
     @purchase_shipping = FactoryBot.build(:purchase_shipping, user_id: buyer.id, item_id: item.id)
   end
@@ -31,7 +30,7 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include("Post code is invalid")
       end
       it 'region_idを選択していないと保存できないこと' do
-        @purchase_shipping.region_id = nil
+        @purchase_shipping.region_id = '---'
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Region is not a number")
       end
@@ -45,20 +44,35 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Address can't be blank")
       end
-      it 'クレジットカードの情報がないと保存できないこと' do
-        @purchase_shipping.token = nil
-        @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
-      end
       it '電話番号が空だと保存できない' do
         @purchase_shipping.phone_number = nil
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号は、10桁以上11桁以内の半角数値じゃないと保存できない' do
+      it '電話番号は、9桁以下の場合登録できない' do
         @purchase_shipping.phone_number = '123456789'
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号は、12桁以上の場合登録できない' do
+        @purchase_shipping.phone_number = '123456789012'
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号は、半角数字以外が含まれている場合登録できない' do
+        @purchase_shipping.phone_number = '12345abcde'
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'userが紐づいていない場合登録できない' do
+        @purchase_shipping.user_id = nil
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐づいていない場合登録できない' do
+        @purchase_shipping.item_id = nil
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Item can't be blank")
       end
       it "tokenが空では登録できないこと" do
         @purchase_shipping.token = nil
